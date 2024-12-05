@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(120deg, #a5e9fc, #8bdff8);
+    background: linear-gradient(120deg, #a5e9fc, #9bdaed);
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
@@ -131,35 +131,36 @@ body {
 }
 #questionContainer{
     display: none;
+    text-align: center;
     background-color:rgba(79, 199, 85, 0.315);
     
 }
 #saltos-de-ciencia {
     position: absolute;
-    top: 150px;
+    top: 200px;
     left: 50%;
     transform: translateX(-50%);
-    padding:20px 200px; /* Ajusta el tamaño del rectángulo */
-    background-color: #B8F27D; /* Verde claro similar al de la imagen */
+    padding:15px 30px; /* Ajusta el tamaño del rectángulo */
+    background-color: #95e980; /* Verde claro similar al de la imagen */
     color: #000000; /* Negro para un buen contraste */
-    font-size: 50px; /* Tamaño del texto */
-    font-weight: bold; /* Negrita */
-    font-family: 'Luckiest Guy', cursive; /* Fuente personalizada */
-    border: 5px solid #228B22; /* Borde verde oscuro */
-    border-radius: 25px; /* Esquinas redondeadas */
+    font-size: 55px; /* Tamaño del texto */
+    /*font-weight: bold;  Negrita */
+    /*font-family: 'Luckiest Guy', cursive;  Fuente personalizada */
+   /* border: 5px solid #228B22;  Borde verde oscuro */
+    border-radius: 10px; /* Esquinas redondeadas */
     
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* text-align: center;Sombra para dar profundidad */
  /* No clickeable */
 }
 #startButton {
     position: absolute;
-    top: 400px;
+    top: 450px;
     left: 50%;
     transform: translateX(-50%);
     padding: 15px 30px;
-    background-color: #FFA500; /* Naranja llamativo */
+    background-color: #3ed65f; /* Naranja llamativo */
     color: #FFFFFF; /* Texto blanco para contraste */
-    font-size: 30px;
+    font-size: 40px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -167,7 +168,7 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 #startButton:hover {
-    background-color: #3ed65f;
+    background-color: #26bb46;
 }
 .options {
     display:flex;
