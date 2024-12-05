@@ -218,7 +218,7 @@ function showRetryModal() {
 
 function showVictoryAnimation() {
     const boy = document.getElementById('boy');
-    boy.style.left = '660px';
+    boy.style.left = '685px';
     setTimeout(() => {
         // Mostrar el modal de victoria
         document.getElementById('victoryModal').style.display = 'flex';

@@ -133,8 +133,13 @@ body {
     display: none;
     text-align: center;
     background-color:rgba(79, 199, 85, 0.315);
-    
+    font-size: 20px;
 }
+
+#score{
+    text-align: center;
+}
+
 #saltos-de-ciencia {
     position: absolute;
     top: 200px;
@@ -186,7 +191,7 @@ body {
     top: 10px;
     left: 10px;
     font-size: 24px;
-    background-color: rgba(0, 255, 13, 0.178);
+    background-color: rgba(0, 255, 13, 0.063);
 }
 #progress {
     position: absolute;
@@ -194,6 +199,7 @@ body {
     right: 10px;
     font-size: 18px;
     color: #333;
+    text-align: center;
 }
 #boy {
     position: absolute;
