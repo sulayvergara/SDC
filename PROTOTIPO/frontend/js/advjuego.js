@@ -20,6 +20,7 @@ async function startGame() {
     });
 
     document.getElementById('startButton').style.display = 'none';
+    document.getElementById('saltos-de-ciencia').style.display = 'none';
     document.getElementById('questionContainer').style.display = 'block';
     document.getElementById('boy').style.display = 'block';
     document.getElementById('cat').style.display = 'block';
