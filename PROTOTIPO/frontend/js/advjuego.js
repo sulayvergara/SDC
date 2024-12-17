@@ -1,10 +1,8 @@
-//agregando funcion teclas
 let currentQuestionIndex = 0;
 let lives = 3;
 let position = 0;
 let score = 0;
 let questions = [];
-//const stonePositions = [160, 260, 360, 460];
 const stonePositions = [180, 310, 430, 560];
 let selectedAnswerIndex = -1;
 
