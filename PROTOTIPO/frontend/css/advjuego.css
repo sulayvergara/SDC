@@ -175,6 +175,28 @@ body {
 #startButton:hover {
     background-color: #26bb46;
 }
+
+#moveButton:focus {
+    outline: 2px solid #ffcc00; /* Contorno brillante al enfocarse */
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+.highlight {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px #ffcc00;
+    }
+    50% {
+        box-shadow: 0 0 15px #ffcc00;
+    }
+    100% {
+        box-shadow: 0 0 5px #ffcc00;
+    }
+}
+
 .options {
     display:flex;
     flex-direction: column;

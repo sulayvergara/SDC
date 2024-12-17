@@ -1,3 +1,16 @@
+//startButton : iniciar juego
+//moveButton : saltar
+
+//los de las opciones dec respuestas son input
+
+//  Cuando gana
+//playAgainButton : jugar otra vez
+//exitButton : salir del juego
+
+//  Cuando pierde
+//retryButton : reintentar 
+
+
 let currentQuestionIndex = 0;
 let lives = 3;
 let position = 0;
@@ -80,25 +93,37 @@ function checkAnswer(selectedOption) {
         feedbackElement.innerHTML = '<i class="fas fa-check-circle"></i> ¡Respuesta correcta!';
         feedbackElement.classList.add('correct');
         document.getElementById('score').innerText = `Puntos: ${score}`;
-        document.getElementById('moveButton').style.display = 'block';
+
+        // Habilitar el botón "Mover"
+        const moveButton = document.getElementById('moveButton');
+        moveButton.style.display = 'block';
+
+        // **Enfocar automáticamente el botón "Mover"**
+        moveButton.focus();
+
+        // Opcional: Agregar un efecto visual al botón
+        moveButton.classList.add('highlight');
+        setTimeout(() => moveButton.classList.remove('highlight'), 1000);
         
     } else {
         score -= 20;
         feedbackElement.innerHTML = '<i class="fas fa-times-circle"></i> Respuesta incorrecta. Inténtalo de nuevo.';
         feedbackElement.classList.add('incorrect');
-        //feedbackElement.innerText = 'Respuesta incorrecta. Inténtalo de nuevo.';
         document.getElementById('score').innerText = `Puntos: ${score}`;
         lives--;
         updateLives();
+
         setTimeout(() => {
             feedbackElement.classList.remove('incorrect');
-            feedbackElement.innerHTML = ''; // Opcional: limpiar el contenido después de ocultarlo
+            feedbackElement.innerHTML = '';
         }, 1000);
+
         if (lives === 0) {
             showRetryModal();
         }
     }
 }
+
 
 function saltar() {
     const feedbackElement = document.querySelector('.feedback');
@@ -144,6 +169,26 @@ function saltar() {
         moveToCat();
     }
 }
+
+function movePointerToAnswer(answerIndex) {
+    const answers = document.querySelectorAll('.answer'); // Todas las respuestas
+    
+    if (answers.length > answerIndex) {
+        const targetAnswer = answers[answerIndex]; // La respuesta específica
+        targetAnswer.querySelector('input').click(); // Selecciona la respuesta
+        scrollToElement(targetAnswer); // Desplaza el puntero al elemento visualmente
+    }
+}
+
+function scrollToElement(element) {
+    const rect = element.getBoundingClientRect(); // Posición del elemento
+    window.scrollTo({
+        top: rect.top + window.scrollY - 100, // Ajusta el desplazamiento según necesites
+        behavior: 'smooth'
+    });
+}
+
+
 
 function moveToCat() {
     const boy = document.getElementById('boy');
