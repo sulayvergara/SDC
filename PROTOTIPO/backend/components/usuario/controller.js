@@ -4,7 +4,13 @@ function insertar_usuario( dato ) {
     return new Promise( (resolve, reject) => {
         if ( !dato.nombre || !dato.apellido || !dato.curso || !dato.paralelo ) {
             reject( 'Los datos se encuentran incompletos.' )
-        } else {
+        } 
+        
+        if (dato.puntaje === undefined) {
+            dato.puntaje = 0;
+        }
+        
+        else {
             resolve( storage.insertar( dato ) )
         }
     } )
@@ -23,7 +29,8 @@ async function obtener_usuario() {
                     const resultadoFiltrado = {
                         nombre: ultimoRegistro.nombre,
                         apellido: ultimoRegistro.apellido,
-                        paralelo: ultimoRegistro.paralelo
+                        paralelo: ultimoRegistro.paralelo,
+                        puntaje: ultimoRegistro.puntaje
                     };
                     console.log('final:', resultadoFiltrado);
                     resolve(resultadoFiltrado);

@@ -17,8 +17,22 @@ async function obtener_usuario(dato) {
     }
 }
 
+async function actualizarPuntaje(usuarioId, nuevoPuntaje) {
+    try {
+      const usuario = await model.findByIdAndUpdate(
+        usuarioId,
+        { puntaje: nuevoPuntaje },
+        { new: true }
+      );
+      console.log('Puntaje actualizado:', usuario);
+    } catch (error) {
+      console.error('Error al actualizar el puntaje:', error);
+    }
+  }
+
 
 module.exports = {
     insertar:insertar_usuario,
-    obtener:obtener_usuario
+    obtener:obtener_usuario,
+    actualizarPuntaje
 }
