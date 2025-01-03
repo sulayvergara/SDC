@@ -18,17 +18,30 @@ async function obtener_usuario(dato) {
 }
 
 async function actualizarPuntaje(usuarioId, nuevoPuntaje) {
-    try {
+  try {
       const usuario = await model.findByIdAndUpdate(
-        usuarioId,
-        { puntaje: nuevoPuntaje },
-        { new: true }
+          usuarioId,
+          { puntaje: nuevoPuntaje },
+          { 
+              new: true,
+              runValidators: true
+          }
       );
-      console.log('Puntaje actualizado:', usuario);
-    } catch (error) {
-      console.error('Error al actualizar el puntaje:', error);
-    }
+      
+      if (!usuario) {
+          throw new Error('Usuario no encontrado');
+      }
+      
+      return {
+          id: usuario._id,
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+          puntaje: usuario.puntaje
+      };
+  } catch (error) {
+      throw new Error(`Error al actualizar el puntaje: ${error.message}`);
   }
+}
 
 
 module.exports = {

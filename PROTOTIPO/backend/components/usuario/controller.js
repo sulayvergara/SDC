@@ -16,24 +16,30 @@ function insertar_usuario( dato ) {
     } )
 }
 
-async function obtener_usuario() {
+async function obtener_usuario(filtro = {}) {
     return new Promise((resolve, reject) => {
-        storage.obtener({}) // Llama a la función sin filtro
+        storage.obtener(filtro)
             .then((resultados) => {
-                console.log('Resultados obtenidos:', resultados); // Agrega un log para depuración
                 if (resultados.length > 0) {
-                    // Ordena por fecha_creacion en orden descendente y toma el primer resultado
-                    const ultimoRegistro = resultados.sort((a, b) => b.fecha_creacion - a.fecha_creacion)[0];
-                    console.log('Último registro:', ultimoRegistro); // Agrega un log para depuración
-                    // Devuelve solo el nombre y el apellido
-                    const resultadoFiltrado = {
-                        nombre: ultimoRegistro.nombre,
-                        apellido: ultimoRegistro.apellido,
-                        paralelo: ultimoRegistro.paralelo,
-                        puntaje: ultimoRegistro.puntaje
-                    };
-                    console.log('final:', resultadoFiltrado);
-                    resolve(resultadoFiltrado);
+                    // Si no hay filtro específico, devuelve el último registro
+                    if (Object.keys(filtro).length === 0) {
+                        const ultimoRegistro = resultados.sort((a, b) => 
+                            b.fecha_creacion - a.fecha_creacion)[0];
+                        resolve({
+                            nombre: ultimoRegistro.nombre,
+                            apellido: ultimoRegistro.apellido,
+                            paralelo: ultimoRegistro.paralelo,
+                            puntaje: ultimoRegistro.puntaje
+                        });
+                    } else {
+                        // Si hay filtro, devuelve todos los resultados encontrados
+                        resolve(resultados.map(r => ({
+                            nombre: r.nombre,
+                            apellido: r.apellido,
+                            paralelo: r.paralelo,
+                            puntaje: r.puntaje
+                        })));
+                    }
                 } else {
                     reject('No se encontraron registros');
                 }
@@ -42,8 +48,49 @@ async function obtener_usuario() {
     });
 }
 
+async function actualizar_puntaje(filtro, nuevoPuntaje) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const usuarios = await storage.obtener(filtro);
+            
+            if (!usuarios || usuarios.length === 0) {
+                reject('Usuario no encontrado');
+                return;
+            }
+
+            const usuario = usuarios[0];
+            
+            if (typeof nuevoPuntaje !== 'number' || isNaN(nuevoPuntaje)) {
+                reject('El puntaje debe ser un número válido');
+                return;
+            }
+
+            const usuarioActualizado = await storage.actualizarPuntaje(usuario._id, nuevoPuntaje);
+            resolve(usuarioActualizado);
+        } catch (error) {
+            reject(`Error al actualizar el puntaje: ${error.message}`);
+        }
+    });
+}
+
+async function incrementar_puntaje(filtro, incremento) {
+    try {
+        const usuarios = await storage.obtener(filtro);
+        if (!usuarios || usuarios.length === 0) {
+            throw new Error('Usuario no encontrado');
+        }
+
+        const usuario = usuarios[0];
+        const nuevoPuntaje = usuario.puntaje + incremento;
+        return await storage.actualizarPuntaje(usuario._id, nuevoPuntaje);
+    } catch (error) {
+        throw error;
+    }
+}
 
 module.exports = {
     insertar_usuario,
-    obtener_usuario
+    obtener_usuario,
+    actualizar_puntaje,
+    incrementar_puntaje
 }
