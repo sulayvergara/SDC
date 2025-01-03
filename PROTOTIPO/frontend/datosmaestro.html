@@ -21,7 +21,8 @@
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="col-md-6">
-                <div class="form-container">
+                <!-- Formulario de inicio de sesión -->
+                <div id="form-inicio-sesion" class="form-container">
                     <h2>INICIO DE SESIÓN:</h2>
                     <form id="inicio-sesion">
                         <div class="form-group">
@@ -35,16 +36,13 @@
                         <button type="submit" class="btn btn-success btn-block">INICIAR SESIÓN</button>
                     </form>
                     <p class="text-center mt-3">
-                        ¿No tienes cuenta? <a href="#insertar-maestro">Regístrate aquí</a>
+                        ¿No tienes cuenta? <a href="#" onclick="mostrarFormulario('registro')">Regístrate aquí</a>
                     </p>
                 </div>
-            </div>
-        </div>
     
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="form-container" style="display:none;">
-                    <h2>INGRESE SUS DATOS:</h2>
+                <!-- Formulario de registro -->
+                <div id="form-registro" class="form-container hidden">
+                    <h2>REGÍSTRATE:</h2>
                     <form id="insertar-maestro">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
@@ -64,14 +62,18 @@
                         </div>
                         <div class="form-group">
                             <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-                            <input type="text" id="fecha_nacimiento" placeholder="Fecha_nacimiento" class="form-control" required>
+                            <input type="text" id="fecha_nacimiento" placeholder="Fecha de nacimiento" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">ENVIAR</button>
+                        <button type="submit" class="btn btn-primary btn-block">REGISTRARSE</button>
                     </form>
+                    <p class="text-center mt-3">
+                        ¿Ya tienes cuenta? <a href="#" onclick="mostrarFormulario('inicio')">Inicia sesión aquí</a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+    
     <script src="js/maestros.js"></script>
     <!-- Bootstrap JS y jQuery (necesario para el modal) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

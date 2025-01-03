@@ -24,6 +24,10 @@ body {
   z-index: 1000;
 }
 
+.hidden {
+  display: none;
+}
+
 .logo {
   height: 60px;
   transition: transform 0.3s ease;

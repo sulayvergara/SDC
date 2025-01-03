@@ -1,5 +1,4 @@
 // Manejo del formulario de registro
-
 document.getElementById('insertar-maestro').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -52,5 +51,18 @@ document.getElementById('inicio-sesion').addEventListener('submit', function(eve
       alert('Error al iniciar sesión: ' + error.message);
   });
 });
+
+function mostrarFormulario(formulario) {
+    const formInicio = document.getElementById('form-inicio-sesion');
+    const formRegistro = document.getElementById('form-registro');
+
+    if (formulario === 'inicio') {
+        formInicio.classList.remove('hidden');
+        formRegistro.classList.add('hidden');
+    } else if (formulario === 'registro') {
+        formInicio.classList.add('hidden');
+        formRegistro.classList.remove('hidden');
+    }
+}
 
 
