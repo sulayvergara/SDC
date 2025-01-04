@@ -2,7 +2,7 @@ const storage = require('./storage')
 
 function insertar_usuario( dato ) {
     return new Promise( (resolve, reject) => {
-        if ( !dato.nombre || !dato.apellido || !dato.curso || !dato.paralelo ) {
+        if ( !dato.nombre || !dato.apellido || !dato.curso || !dato.paralelo || !dato.puntaje) {
             reject( 'Los datos se encuentran incompletos.' )
         } 
         
@@ -16,30 +16,24 @@ function insertar_usuario( dato ) {
     } )
 }
 
-async function obtener_usuario(filtro = {}) {
+async function obtener_usuario() {
     return new Promise((resolve, reject) => {
-        storage.obtener(filtro)
+        storage.obtener({}) // Llama a la función sin filtro
             .then((resultados) => {
+                console.log('Resultados obtenidos:', resultados); // Agrega un log para depuración
                 if (resultados.length > 0) {
-                    // Si no hay filtro específico, devuelve el último registro
-                    if (Object.keys(filtro).length === 0) {
-                        const ultimoRegistro = resultados.sort((a, b) => 
-                            b.fecha_creacion - a.fecha_creacion)[0];
-                        resolve({
-                            nombre: ultimoRegistro.nombre,
-                            apellido: ultimoRegistro.apellido,
-                            paralelo: ultimoRegistro.paralelo,
-                            puntaje: ultimoRegistro.puntaje
-                        });
-                    } else {
-                        // Si hay filtro, devuelve todos los resultados encontrados
-                        resolve(resultados.map(r => ({
-                            nombre: r.nombre,
-                            apellido: r.apellido,
-                            paralelo: r.paralelo,
-                            puntaje: r.puntaje
-                        })));
-                    }
+                    // Ordena por fecha_creacion en orden descendente y toma el primer resultado
+                    const ultimoRegistro = resultados.sort((a, b) => b.fecha_creacion - a.fecha_creacion)[0];
+                    console.log('Último registro:', ultimoRegistro); // Agrega un log para depuración
+                    // Devuelve solo el nombre y el apellido
+                    const resultadoFiltrado = {
+                        nombre: ultimoRegistro.nombre,
+                        apellido: ultimoRegistro.apellido,
+                        paralelo: ultimoRegistro.paralelo,
+                        puntaje: ultimoRegistro.puntaje
+                    };
+                    console.log('final:', resultadoFiltrado);
+                    resolve(resultadoFiltrado);
                 } else {
                     reject('No se encontraron registros');
                 }

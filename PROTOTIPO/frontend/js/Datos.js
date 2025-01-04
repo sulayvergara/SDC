@@ -4,11 +4,12 @@ document.getElementById('insertar-usuario').addEventListener('submit', function(
   const apellido = document.getElementById('apellido').value;
   const curso = document.getElementById('curso').value;
   const paralelo = document.getElementById('paralelo').value;
+  const puntaje = null;
 
   fetch('/usuario', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, apellido, curso, paralelo})
+      body: JSON.stringify({ nombre, apellido, curso, paralelo, puntaje})
   })
   .then(response => response.json())
   .then(data => mostrarResultado('Ingreso satisfactorio',data))
