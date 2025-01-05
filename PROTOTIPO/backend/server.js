@@ -41,11 +41,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname,'..', 'frontend', 'Tabla.html'));
+});
+
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,'..', 'frontend', 'datosmaestro.html'));
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname,'..', 'frontend', 'Tabla.html'));
+  res.sendFile(path.join(__dirname,'..', 'frontend', 'gpregunta.html'));
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname,'..', 'frontend', 'admMaestro.html'));
 });
 
 routes( app )

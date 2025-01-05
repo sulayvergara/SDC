@@ -42,14 +42,14 @@ document.getElementById('inicio-sesion').addEventListener('submit', function(eve
   })
   .then(data => {
       alert('Inicio de sesión exitoso.');
-
-      // Redirigir a otra página
-      window.location.href = 'Tabla.html'; // Cambia esto según tu configuración
+      // Muestra el modal de Bootstrap
+      $('#success-modal').modal('show');
   })
   .catch(error => {
       console.error('Error:', error);
       alert('Error al iniciar sesión: ' + error.message);
   });
+  
 });
 
 function mostrarFormulario(formulario) {
@@ -64,5 +64,7 @@ function mostrarFormulario(formulario) {
         formRegistro.classList.remove('hidden');
     }
 }
+
+
 
 
