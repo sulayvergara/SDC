@@ -66,5 +66,3 @@ function mostrarFormulario(formulario) {
 }
 
 
-
-
