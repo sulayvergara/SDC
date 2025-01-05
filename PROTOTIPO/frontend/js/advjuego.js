@@ -336,8 +336,34 @@ function resetGame() {
     displayQuestion();
     
 }
-function exitGame() {
-    localStorage.setItem('score', score);
-    // Aquí puedes redirigir a otra página o realizar otras acciones para salir del juego
-    window.location.href = 'Tabla.html'; // Ejemplo: redirigir a la página principal
+
+// Modificar la función exitGame existente
+// En tu código del juego
+async function exitGame() {
+    try {
+        const response = await fetch('/usuario/updateScore', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ score: score }) // score es tu variable global del juego
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al actualizar el puntaje');
+        }
+
+        const data = await response.json();
+        console.log('Puntaje actualizado:', data.body.puntaje);
+        
+        // Guardar en localStorage si aún lo necesitas
+        localStorage.setItem('score', score);
+        
+        // Redirigir a la página de tabla
+        window.location.href = 'Tabla.html';
+    } catch (error) {
+        console.error('Error:', error);
+        // Redireccionar de todas formas
+        window.location.href = 'Tabla.html';
+    }
 }

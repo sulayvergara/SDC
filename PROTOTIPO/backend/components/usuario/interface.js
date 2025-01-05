@@ -15,14 +15,15 @@ routes.get('/', function(req, res) {
         .then((data) => response.success(req, res, data, 200))
         .catch((error) => response.error(req, res, error, 400));
 });
-routes.put('/puntaje', function(req, res) {
-    controller.actualizar_puntaje(req.query, req.body.puntaje)
-        .then((data) => response.success(req, res, data, 200))
-        .catch((error) => response.error(req, res, error, 400));
-});
 
-routes.post('/puntaje/incrementar', function(req, res) {
-    controller.incrementar_puntaje(req.query, req.body.incremento)
+routes.post('/updateScore', function(req, res) {
+    const score = parseInt(req.body.score); // Asegurarse de que el score sea un número
+    
+    if (isNaN(score)) {
+        return response.error(req, res, 'El puntaje debe ser un número válido', 400);
+    }
+
+    controller.actualizar_puntaje(score)
         .then((data) => response.success(req, res, data, 200))
         .catch((error) => response.error(req, res, error, 400));
 });
