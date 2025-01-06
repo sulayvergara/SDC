@@ -119,3 +119,10 @@ function mostrarError(mensaje) {
         document.getElementById('error').textContent = '';
     }, 3000);
 }
+
+function mostrarFormulario() {
+    // Oculta el botón y muestra el formulario
+    document.getElementById('btn-new').style.display = 'none';
+    document.getElementById('formulario').style.display = 'block';
+}
+
