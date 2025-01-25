@@ -17,6 +17,17 @@ async function obtener_usuario(dato) {
     }
 }
 
+async function obtener_estudiantes(dato) {
+    try {
+        if (!dato || Object.keys(dato).length === 0) {
+            // Retorna todos los documentos si no hay filtro
+            return await model.find();
+        }
+    } catch (error) {
+        throw new Error('Error al obtener los datos: ' + error.message);
+    }
+}
+
 async function actualizarPuntaje(usuarioId, nuevoPuntaje) {
   try {
       const usuario = await model.findByIdAndUpdate(
@@ -43,9 +54,9 @@ async function actualizarPuntaje(usuarioId, nuevoPuntaje) {
   }
 }
 
-
 module.exports = {
     insertar:insertar_usuario,
     obtener:obtener_usuario,
-    actualizarPuntaje
+    actualizarPuntaje,
+    obtener_estudiantes
 }

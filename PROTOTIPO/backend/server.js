@@ -53,6 +53,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname,'..', 'frontend', 'g-estudiantes.html'));
+});
+
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,'..', 'frontend', 'admMaestro.html'));
 });
 

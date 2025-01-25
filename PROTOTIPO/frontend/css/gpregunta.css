@@ -54,11 +54,7 @@ h1 {
     transition: transform 0.3s ease;
 }
 
-.main-header h1 {
-    flex-grow: 1;
-    text-align: center;
-    font-size: 1.8em;
-}
+
 #formulario {
     display: none; /* Oculta el formulario inicialmente */
 }
@@ -154,4 +150,23 @@ button:hover {
 
 .question-item button {
     margin-right: 10px;
+}
+
+.tabla-estudiantes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-estudiantes th, .tabla-estudiantes td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla-estudiantes thead {
+    background-color: #f2f2f2;
+}
+
+.tabla-estudiantes tr:nth-child(even) {
+    background-color: #f9f9f9;
 }

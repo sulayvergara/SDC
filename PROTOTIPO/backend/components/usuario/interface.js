@@ -16,6 +16,12 @@ routes.get('/', function(req, res) {
         .catch((error) => response.error(req, res, error, 400));
 });
 
+routes.get('/estudiantes', function(req, res) {
+    controller.obtener_estudiantes()
+        .then((data) => response.success(req, res, data, 200))
+        .catch((error) => response.error(req, res, error, 400));
+});
+
 routes.post('/updateScore', function(req, res) {
     const score = parseInt(req.body.score); // Asegurarse de que el score sea un número
     

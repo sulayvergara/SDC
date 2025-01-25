@@ -16,6 +16,18 @@ function insertar_usuario( dato ) {
     } )
 }
 
+async function obtener_estudiantes() {
+    return new Promise((resolve, reject) => {
+        storage.obtener_estudiantes({})
+            .then((resultados) => {
+                console.log('Resultados obtenidos:', resultados);
+                resolve(resultados); // Devuelve todos los registros
+            })
+            .catch((error) => reject(`Error al obtener usuarios: ${error.message}`));
+    });
+}
+
+
 async function obtener_usuario() {
     return new Promise((resolve, reject) => {
         storage.obtener({}) // Llama a la función sin filtro
@@ -94,5 +106,6 @@ async function actualizar_puntaje(nuevoPuntaje) {
 module.exports = {
     insertar_usuario,
     obtener_usuario,
-    actualizar_puntaje
+    actualizar_puntaje,
+    obtener_estudiantes
 }
